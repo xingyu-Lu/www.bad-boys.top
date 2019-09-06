@@ -22,7 +22,7 @@ $upload_config = Yii::$app->params['upload'];
 <body>
 <?php $this->beginBody() ?>
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation">
+    <nav style="z-index: 0;" class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
@@ -35,15 +35,15 @@ $upload_config = Yii::$app->params['upload'];
                     </div>
                 </li>
                 <li class="dashboard">
-                    <a href="/admin/dashboard/index"><i class="fa fa-dashboard fa-lg"></i>
-                        <span class="nav-label">仪表盘</span></a>
+                    <a href="/admin/articles/index"><i class="fa fa-file-text fa-lg"></i>
+                        <span class="nav-label">文章</span></a>
                 </li>
             </ul>
 
         </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg" style="background-color: #ffffff;">
+    <div id="page-wrapper" class="gray-bg" style="background-color: #ffffff; height: 656px">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
@@ -53,7 +53,7 @@ $upload_config = Yii::$app->params['upload'];
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
 						<span class="m-r-sm text-muted welcome-message">
-                            欢迎使用编程浪子图书商城管理后台
+                            欢迎使用星宇博客管理后台
                         </span>
                     </li>
                     <li class="hidden">

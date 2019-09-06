@@ -61,12 +61,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $session = Yii::$app->session;
-        $session->set('language', 'en-US');
-        var_dump(1, Yii::$app->user->identity, Yii::$app->user->id, $session->get('id'));
-        foreach ($session as $name => $value) {
-            echo var_dump($name, $value) . "\n";
-        }
         return $this->render('index');
     }
 

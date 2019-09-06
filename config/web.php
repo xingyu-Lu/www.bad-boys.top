@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'zh-CN',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -43,18 +44,27 @@ $config = [
             ],
         ],
         'db' => $db,
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-
+        'formatter' => [
+            'dateFormat' => 'Y-M-d',
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => '￥',
+            'sizeFormatBase' => 1000,
+        ],
     ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\admin',
+        ],
+        'v1' => [
+            'class' => 'app\modules\v1\v1',
         ],
     ],
     'params' => $params,
