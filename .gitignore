@@ -33,4 +33,5 @@ tests/_support/_generated
 /.vagrant
 
 #env.php
-#env.php
+env.php
+/web/uploads

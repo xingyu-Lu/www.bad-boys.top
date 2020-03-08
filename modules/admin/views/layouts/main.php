@@ -2,11 +2,15 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 use \app\common\services\UrlService;
-use yii\helpers\Html;
 use app\assets\WebAsset;
+use app\models\BlogAdminUser;
+use yii\helpers\Html;
 
 WebAsset::register($this);
 $upload_config = Yii::$app->params['upload'];
+
+$user_id = Yii::$app->session->get('user_id');
+$user_info = BlogAdminUser::findOne($user_id);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,19 +39,21 @@ $upload_config = Yii::$app->params['upload'];
                     </div>
                 </li>
                 <li class="dashboard">
-                    <a href="/admin/articles/index"><i class="fa fa-file-text fa-lg"></i>
-                        <span class="nav-label">文章</span></a>
+                    <a href="/admin/dashbord/index"><i class="fab fa-dashcube fa-lg"></i><span class="nav-label">仪表盘</span></a>
+                </li>
+                <li class="article">
+                    <a href="/admin/articles/index"><i class="fas fa-newspaper fa-lg"></i><span class="nav-label">文章</span></a>
                 </li>
             </ul>
 
         </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg" style="background-color: #ffffff; height: 656px">
+    <div id="page-wrapper" style="background-color: #ffffff; height: 850px;">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="<?=UrlService::buildNullUrl();?>"><i class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)"><i class="fa fa-bars"></i> </a>
 
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
@@ -56,38 +62,30 @@ $upload_config = Yii::$app->params['upload'];
                             欢迎使用星宇博客管理后台
                         </span>
                     </li>
-                    <li class="hidden">
-                        <a class="count-info" href="<?=UrlService::buildNullUrl();?>">
-                            <i class="fa fa-bell"></i>
-                            <span class="label label-primary">8</span>
-                        </a>
-                    </li>
-
-
                     <li class="dropdown user_info">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ole="button" aria-haspopup="true" aria-expanded="false" href="<?=UrlService::buildNullUrl();?>">
+                        <a class="dropdown-toggle" data-toggle="dropdown" ole="button" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">
                             <img alt="image" class="img-circle" src="/images/web/avatar.png" />
                         </a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li>
                                 <div class="dropdown-messages-box">
-                                    姓名：
-                                    <a href="" class="pull-right">编辑</a>
+                                    姓名：<?= isset($user_info->name) ? $user_info->name : ''; ?>
+                                    <a href="/admin/dashbord/edit" class="pull-right">编辑</a>
                                 </div>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <div class="dropdown-messages-box">
-                                    手机号码：
+                                    邮箱：<?= isset($user_info->email) ? $user_info->email : ''; ?>
                                 </div>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <div class="link-block text-center">
-                                    <a class="pull-left" href="">
-                                        <i class="fa fa-lock"></i> 修改密码
+                                    <a class="pull-left" href="/admin/dashbord/pwd-reset">
+                                        <i class="fas fa-lock"></i> 修改密码
                                     </a>
-                                    <a class="pull-right" href="">
+                                    <a class="pull-right" href="/admin/dashbord/loginout">
                                         <i class="fa fa-sign-out"></i> 退出
                                     </a>
                                 </div>
@@ -102,9 +100,6 @@ $upload_config = Yii::$app->params['upload'];
         <?= $content; ?>
 
     </div>
-</div>
-<div class="hidden_layout_warp hide">
-    <input type="hidden" name="upload_config" value='<?=json_encode( $upload_config );?>'/>
 </div>
 <?php $this->endBody() ?>
 </body>

@@ -2,17 +2,19 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Articles;
-use yii\data\ActiveDataProvider;
 use Yii;
+use app\models\BlogAdminUser;
+use app\models\BlogArticles;
+use app\modules\admin\controllers\BaseController;
+use yii\data\ActiveDataProvider;
 
-class ArticlesController extends \yii\web\Controller
+class ArticlesController extends BaseController
 {
     public $layout = 'main';
 
     public function actionIndex()
     {
-        $query = Articles::find();
+        $query = BlogArticles::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -25,7 +27,17 @@ class ArticlesController extends \yii\web\Controller
 
     public function actionCreate()
     {
-        $model = new Articles();
+        $model = new BlogArticles();
+
+        if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user_info = BlogAdminUser::findOne($this->getSession());
+            $model->author = $user_info->name;
+            $model->create_time = time();
+            $model->update_time = time();
+            $model->save();
+            return $this->redirect('/admin/articles/index');
+        }
+
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -33,9 +45,10 @@ class ArticlesController extends \yii\web\Controller
 
     public function actionUpdate($id)
     {
-        $model = Articles::findOne($id);
+        $model = BlogArticles::findOne($id);
 
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->update_time = time();
             $model->save();
         }
 
@@ -46,7 +59,7 @@ class ArticlesController extends \yii\web\Controller
 
     public function actionView($id)
     {
-        $model = Articles::findOne($id);
+        $model = BlogArticles::findOne($id);
 
         return $this->render('view', [
             'model' => $model

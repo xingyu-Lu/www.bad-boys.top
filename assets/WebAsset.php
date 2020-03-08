@@ -12,8 +12,6 @@ class WebAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/font-awesome.min.css',
-        'css/web/style.css',
     ];
     public $js = [
     ];
@@ -26,7 +24,9 @@ class WebAsset extends AssetBundle
         //加一个版本号,目的 ： 是浏览器获取最新的css 和 js 文件
         $release_version = defined("RELEASE_VERSION")?RELEASE_VERSION:time();
         $this->css = [
-            "/font-awesome/css/font-awesome.css",
+            "/font-awesome/css/fontawesome.css",
+            "/font-awesome/css/brands.css",
+            "/font-awesome/css/solid.css",
 //            "/plugins/layer/skin/default/layer.css",
             "/css/web/style.css?v=$release_version",
         ];

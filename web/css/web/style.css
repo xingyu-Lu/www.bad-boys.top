@@ -3315,7 +3315,7 @@ body.full-height-layout #page-wrapper {
     height: 100%;
 }
 #page-wrapper {
-    min-height: auto;
+     min-height: auto; 
 }
 body.boxed-layout {
     background: url('patterns/shattered.png');

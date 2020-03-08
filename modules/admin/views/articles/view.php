@@ -20,7 +20,12 @@ $this->title = '查看文章';
     'model' => $model,
     'attributes' => [
         'id',
-        'content',
+        [
+            'attribute' => 'content',
+            'value' => function($data) {
+                return strip_tags($data->content);
+            },
+        ],
         [
             'attribute' => 'status',
             'value' => function($data) {
