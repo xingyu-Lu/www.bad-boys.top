@@ -20,13 +20,19 @@ $this->title = '查看文章';
     'model' => $model,
     'attributes' => [
         'id',
-        'content',
+        [
+            'attribute' => 'content',
+            'value' => function($data) {
+                return strip_tags($data->content);
+            },
+        ],
         [
             'attribute' => 'status',
             'value' => function($data) {
                 return $data->getStatusList()[$data->status];
             },
         ],
+        'count',
         'create_time:datetime',
         'update_time:datetime',
     ]

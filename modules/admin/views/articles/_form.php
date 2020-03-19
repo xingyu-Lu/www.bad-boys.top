@@ -6,17 +6,20 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
-$this->registerJsFile('/plugins/ueditor/ueditor.config.js');
-$this->registerJsFile('/plugins/ueditor/ueditor.all.min.js');
+$this->registerCssFile('/plugins/umeditor/themes/default/css/umeditor.css');
+// $this->registerJsFile('/plugins/umeditor/third-party/template.min.js', ['depends'=>'yii\web\YiiAsset','position'=>\yii\web\View::POS_END]);
+$this->registerJsFile('/plugins/umeditor/umeditor.config.js', ['depends'=>'yii\web\YiiAsset','position'=>\yii\web\View::POS_END]);
+$this->registerJsFile('/plugins/umeditor/umeditor.js', ['depends'=>'yii\web\YiiAsset','position'=>\yii\web\View::POS_END]);
+$this->registerJsFile('/plugins/umeditor/lang/zh-cn/zh-cn.js', ['depends'=>'yii\web\YiiAsset','position'=>\yii\web\View::POS_END]);
 
 $js = <<<JS
-    var um = UE.getEditor('myEditor', {
+    var um = UM.getEditor('myEditor', {
     //关闭字数统计
     // wordCount:false,
     //关闭elementPath
     // elementPathEnabled:false,
     //默认的编辑区域高度
-    initialFrameHeight:240,
+    initialFrameHeight:340,     
 });
 JS;
 
@@ -26,11 +29,17 @@ $this->registerJs($js);
     <div class="col-md-8">
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'content')->textarea(['rows' => 6, 'id' => 'myEditor', 'class' => 'col-sm-1 col-md-12', 'style' => 'margin-left: -15px']); ?>
+            <?= $form->field($model, 'title'); ?>
 
-        <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
+            <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id' => 'myEditor']); ?>
 
-        <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
+
+            <?= $form->field($model, 'category')->dropDownList($model->getCategoryList()); ?>
+
+            <?= $form->field($model, 'tag'); ?>
+
+            <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 
         <?php ActiveForm::end(); ?>
     </div>
