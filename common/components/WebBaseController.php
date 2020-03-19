@@ -27,7 +27,7 @@ class WebBaseController extends Controller
 	{
 		$session = Yii::$app->session;
 
-		$session->set('user_id', $user_id);
+		$session->set('user_id', $user_id, 24*60*60);
 
 		return true;
 	}
@@ -61,5 +61,36 @@ class WebBaseController extends Controller
 		]);
 
 		exit;
+	}
+
+	public function setCookie($name, $value, $time = '')
+	{
+		$cookies = Yii::$app->response->cookies;
+
+		$res = $cookies->add(new \yii\web\Cookie([
+		    'name' => $name,
+		    'value' => $value,
+		    'expire' => $time,
+		]));
+
+		return $res;
+	}
+
+	public function getCookie($name)
+	{
+		$cookies = Yii::$app->request->cookies;
+
+		$value = $cookies->getValue($name, '');
+
+		return $value;
+	}
+
+	public function removeCookie($name)
+	{
+		$cookies = Yii::$app->response->cookies;
+
+		$res = $cookies->remove($name);
+
+		return $res;
 	}
 }

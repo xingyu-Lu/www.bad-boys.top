@@ -39,7 +39,7 @@ class BlogAdminUser extends \yii\db\ActiveRecord
             [['email'], 'email'],
             [['password'], 'string', 'max' => 32],
             [['id'], 'unique'],
-            [['verify_code'], 'myCaptcha'],
+            [['verify_code'], 'captcha', 'captchaAction'=>'admin/site/captcha'],
         ];
     }
 
@@ -68,15 +68,5 @@ class BlogAdminUser extends \yii\db\ActiveRecord
             'update_time' => 'Update Time',
             'verify_code' => 'Verify Code',
         ];
-    }
-
-    public function myCaptcha($attribute)
-    {
-
-        if ($this->verify_code != Yii::$app->session->get('__captcha/admin/site/captcha')) {
-            return $this->addError($attribute, '验证码错误');
-        }
-
-        return true;
     }
 }

@@ -16,7 +16,7 @@ if (YII_ENV_DEV) {
 } else {
     return [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=localhost;dbname=blog',
+        'dsn' => 'mysql:host=mysql;dbname=blog',
         'username' => 'blog',
         'password' => 'blog@123',
         'charset' => 'utf8',

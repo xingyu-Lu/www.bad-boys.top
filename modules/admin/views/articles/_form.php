@@ -29,15 +29,17 @@ $this->registerJs($js);
     <div class="col-md-8">
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id' => 'myEditor']); ?>
+            <?= $form->field($model, 'title'); ?>
 
-        <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
+            <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id' => 'myEditor']); ?>
 
-        <?= $form->field($model, 'category')->dropDownList($model->getCategoryList()); ?>
+            <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
 
-        <?= $form->field($model, 'tag'); ?>
+            <?= $form->field($model, 'category')->dropDownList($model->getCategoryList()); ?>
 
-        <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= $form->field($model, 'tag'); ?>
+
+            <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 
         <?php ActiveForm::end(); ?>
     </div>

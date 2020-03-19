@@ -50,6 +50,7 @@ class ArticlesController extends BaseController
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->update_time = time();
             $model->save();
+            return $this->redirect('/admin/articles/index');
         }
 
         return $this->render('update', [

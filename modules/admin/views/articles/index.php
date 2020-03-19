@@ -1,8 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
-use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\web\View;
 
@@ -39,6 +37,7 @@ $current_controller = $this->context->id;
                 return $data->getStatusList()[$data->status];
             },
         ],
+        'count',
         'create_time:datetime',
         'update_time:datetime',
         ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],

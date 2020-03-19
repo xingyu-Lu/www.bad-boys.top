@@ -10,19 +10,24 @@ use app\common\components\WebBaseController;
  */
 class BaseController extends WebBaseController
 {	
+	public $allowAllAction = [
+		'admin/site/login',
+		'admin/site/captcha'
+	];
+
 	public function beforeAction($action)
 	{
-		// $session = Yii::$app->session;
-
-		// $session->open();
-
 		$res = $this->checkLoginStatus();
 
-		if (empty($res)) {
-			return $this->redirect('/admin/site/login');exit;
+		if (in_array($action->getUniqueId(), $this->allowAllAction)) {
+			return true;
 		}
 
-		parent::beforeAction($action);
+		if (empty($res)) {
+			return $this->redirect('/admin/site/login');
+		}
+
+		// parent::beforeAction($action);
 
 		return true;
 	}

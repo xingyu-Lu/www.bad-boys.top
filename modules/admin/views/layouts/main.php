@@ -1,13 +1,11 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
-use \app\common\services\UrlService;
-use app\assets\WebAsset;
+use app\assets\AdminAsset;
 use app\models\BlogAdminUser;
 use yii\helpers\Html;
 
-WebAsset::register($this);
-$upload_config = Yii::$app->params['upload'];
+AdminAsset::register($this);
 
 $user_id = Yii::$app->session->get('user_id');
 $user_info = BlogAdminUser::findOne($user_id);
@@ -38,18 +36,21 @@ $user_info = BlogAdminUser::findOne($user_id);
                         <img alt="image" class="img-circle" src="/images/web/logo.png" />
                     </div>
                 </li>
-                <li class="dashboard">
+                <li class="dashbord">
                     <a href="/admin/dashbord/index"><i class="fab fa-dashcube fa-lg"></i><span class="nav-label">仪表盘</span></a>
                 </li>
                 <li class="article">
                     <a href="/admin/articles/index"><i class="fas fa-newspaper fa-lg"></i><span class="nav-label">文章</span></a>
+                </li>
+                <li class="stat">
+                    <a href="/admin/stat/index"><i class="fas fa-chart-line fa-lg"></i><span class="nav-label">统计</span></a>
                 </li>
             </ul>
 
         </div>
     </nav>
 
-    <div id="page-wrapper" style="background-color: #ffffff; height: 850px;">
+    <div id="page-wrapper" style="background-color: #ffffff; height: 900px;">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
@@ -98,7 +99,6 @@ $user_info = BlogAdminUser::findOne($user_id);
             </nav>
         </div>
         <?= $content; ?>
-
     </div>
 </div>
 <?php $this->endBody() ?>

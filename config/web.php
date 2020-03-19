@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$session_redis = require __DIR__ . '/session_redis.php';
 
 $config = [
     'id' => 'basic',
@@ -58,6 +59,7 @@ $config = [
             'currencyCode' => '￥',
             'sizeFormatBase' => 1000,
         ],
+        'session' => $session_redis,
     ],
     'modules' => [
         'admin' => [
@@ -65,6 +67,9 @@ $config = [
         ],
         'v1' => [
             'class' => 'app\modules\v1\V1Module',
+        ],
+        'web' => [
+            'class' => 'app\modules\web\Module',
         ],
     ],
     'params' => $params,

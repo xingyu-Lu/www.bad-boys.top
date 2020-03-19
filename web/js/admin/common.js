@@ -43,7 +43,6 @@ function fix_height() {
             $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
         }
     }
-
 }
 
 var common_ops = {
@@ -64,45 +63,18 @@ var common_ops = {
         });
     },
     setMenuIconHighLight:function(){
-        // if( $("#side-menu li").size() < 1 ){
-        //     return;
-        // }
         var pathname = window.location.pathname;
         var nav_name = null;
 
-        if(  pathname.indexOf("/web/dashboard") > -1 || pathname == "/web" || pathname == "/web/" ){
-            nav_name = "dashboard";
+        if(  pathname.indexOf("/admin/dashbord") > -1 ){
+            nav_name = "dashbord";
         }
 
-        if(  pathname.indexOf("/web/account") > -1  ){
-            nav_name = "account";
+        if(  pathname.indexOf("/admin/article") > -1  ){
+            nav_name = "article";
         }
 
-        if(  pathname.indexOf("/web/brand") > -1  ){
-            nav_name = "brand";
-        }
-
-        if(  pathname.indexOf("/web/book") > -1  ){
-            nav_name = "book";
-        }
-
-        if(  pathname.indexOf("/web/member") > -1  ){
-            nav_name = "member";
-        }
-
-        if(  pathname.indexOf("/web/market") > -1  ){
-            nav_name = "market";
-        }
-
-        if(  pathname.indexOf("/web/finance") > -1  ){
-            nav_name = "finance";
-        }
-
-        if(  pathname.indexOf("/web/qrcode") > -1  ){
-            nav_name = "market";
-        }
-
-        if(  pathname.indexOf("/web/stat") > -1  ){
+        if(  pathname.indexOf("/admin/stat") > -1  ){
             nav_name = "stat";
         }
 

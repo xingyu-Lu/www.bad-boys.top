@@ -5,12 +5,11 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\BlogAdminUser;
 use app\modules\admin\controllers\BaseController;
-use yii\web\Controller;
 
 /**
  * Default controller for the `admin` module
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     public $layout = false;
 
@@ -20,16 +19,13 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'width'           => 120,
+                'width'           => 85,
                 'height'          => 40,
                 'padding'         => 0,
-                'minLength'       => 3,
+                'minLength'       => 4,
                 'maxLength'       => 4,
                 'padding' => 1,
                 'offset' => 1,
@@ -43,7 +39,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        // var_dump(322);exit;
         $model = new BlogAdminUser();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -70,14 +65,12 @@ class SiteController extends Controller
                 ]);
             }
 
-            $session = Yii::$app->session;
-
-            $session->set('user_id', $user_info->id);
+            $this->setLoginStatus($user_info->id);
 
             return $this->redirect('/admin/dashbord/index');
         }
 
-        $session = Yii::$app->session->get('user_id');
+        $session = $this->checkLoginStatus();
 
         if ($session) {
             $this->redirect('/admin/dashbord/index');

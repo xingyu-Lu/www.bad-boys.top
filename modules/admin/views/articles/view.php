@@ -32,6 +32,7 @@ $this->title = '查看文章';
                 return $data->getStatusList()[$data->status];
             },
         ],
+        'count',
         'create_time:datetime',
         'update_time:datetime',
     ]

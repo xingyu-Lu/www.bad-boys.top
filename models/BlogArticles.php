@@ -40,11 +40,11 @@ class BlogArticles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'required'],
-            [['id', 'status', 'create_time', 'update_time'], 'integer'],
-            [['content'], 'string'],
+            [['content', 'title'], 'required'],
+            [['status', 'create_time', 'update_time', 'count'], 'integer'],
+            [['content', 'title'], 'string'],
             [['category', 'tag', 'author'], 'string', 'max' => 20],
-            [['id'], 'unique'],
+            [['title'], 'string', 'max' => 30],
         ];
     }
 
@@ -60,6 +60,7 @@ class BlogArticles extends \yii\db\ActiveRecord
             'category' => 'Category',
             'tag' => 'Tag',
             'author' => 'Author',
+            'count' => 'Count',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
         ];
@@ -75,7 +76,7 @@ class BlogArticles extends \yii\db\ActiveRecord
         return $arr;
     }
 
-    public function getCategoryList()
+    public static function getCategoryList()
     {
         $arr = [
             self::CATEGORY_0 => 'PHP',
