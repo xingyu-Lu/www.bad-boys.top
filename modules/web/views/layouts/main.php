@@ -39,6 +39,10 @@ $tags_arr = BlogArticles::find()
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="/">
+                <div class="hidden-xs b-nav-background"></div>
+                <p class="b-logo-word">卢星宇博客</p>
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav b-nav-parent">
