@@ -29,10 +29,12 @@ class AdminAsset extends AssetBundle
             "/font-awesome/css/solid.css",
 //            "/plugins/layer/skin/default/layer.css",
             "/css/admin/style.css?v=$release_version",
+            "/plugins/datetimepicker/bootstrap-datetimepicker.min.css",
         ];
         $this->js = [
             // "/plugins/layer/layer.js",
             "/js/admin/common.js?v=$release_version",
+            "/plugins/datetimepicker/bootstrap-datetimepicker.min.js",
         ];
         parent::registerAssetFiles( $view );
     }
