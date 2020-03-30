@@ -27,7 +27,7 @@ $current_controller = $this->context->id;
         [
             'attribute' => 'content',
             'value' => function($data) {
-                return strip_tags($data->content);
+                return substr(strip_tags($data->content), 0, 300);
             },
             'contentOptions' => ['style'=>'width: 700px; word-wrap: break-word;'],
         ],
