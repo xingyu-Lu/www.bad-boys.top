@@ -48,7 +48,7 @@ $tags_arr = BlogArticles::find()
             <ul class="nav navbar-nav b-nav-parent">
                 <li class="hidden-xs b-nav-mobile"></li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'index') ? 'b-nav-active' : ''?> ">
-                    <a href="/web/article/index">首页</a>
+                    <a href="/">首页</a>
                 </li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'php') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/php">PHP</a>
