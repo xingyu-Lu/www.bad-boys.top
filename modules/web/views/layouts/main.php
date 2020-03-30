@@ -59,6 +59,9 @@ $tags_arr = BlogArticles::find()
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'arithmetic') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/arithmetic">算法</a>
                 </li>
+                <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'mysql') ? 'b-nav-active' : ''?> ">
+                    <a href="/web/article/mysql">mysql</a>
+                </li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'others') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/others">其他</a>
                 </li>

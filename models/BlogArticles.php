@@ -25,6 +25,7 @@ class BlogArticles extends \yii\db\ActiveRecord
     const CATEGORY_1 = 1;
     const CATEGORY_2 = 2;
     const CATEGORY_3 = 3;
+    const CATEGORY_4 = 4;
 
     /**
      * {@inheritdoc}
@@ -83,6 +84,7 @@ class BlogArticles extends \yii\db\ActiveRecord
             self::CATEGORY_1 => 'Linux',
             self::CATEGORY_2 => '算法',
             self::CATEGORY_3 => '其他',
+            self::CATEGORY_4 => 'Mysql',
         ];
 
         return $arr;

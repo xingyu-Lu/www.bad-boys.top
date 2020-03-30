@@ -89,6 +89,24 @@ class ArticleController extends BaseController
         ]);
     }
 
+    public function actionMysql()
+    {
+        $query = BlogArticles::find()->where(['status' => 0, 'category' => BlogArticles::CATEGORY_4]);
+
+        $count = $query->count();
+
+        $pagination = new Pagination(['totalCount' => $count, 'defaultPageSize' => 10]);
+
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('index', [
+            'pagination' => $pagination,
+            'articles' => $articles,
+        ]);
+    }
+
     public function actionOthers()
     {
         $query = BlogArticles::find()->where(['status' => 0, 'category' => BlogArticles::CATEGORY_3]);
