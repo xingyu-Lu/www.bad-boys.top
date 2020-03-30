@@ -53,7 +53,7 @@ $this->registerJs($js);
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-w-m btn-outline btn-primary">
+                <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
             </div>
         </div>
         <hr/>
