@@ -23,7 +23,7 @@ $this->title = '查看文章';
         [
             'attribute' => 'content',
             'value' => function($data) {
-                return strip_tags($data->content);
+                return substr(strip_tags($data->content), 0, 300);
             },
         ],
         [

@@ -84,7 +84,7 @@ class BlogArticles extends \yii\db\ActiveRecord
             self::CATEGORY_1 => 'Linux',
             self::CATEGORY_2 => '算法',
             self::CATEGORY_3 => '其他',
-            self::CATEGORY_4 => 'Mysql',
+            self::CATEGORY_4 => 'MySQL',
         ];
 
         return $arr;
