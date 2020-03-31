@@ -18,7 +18,7 @@ class BaseController extends WebBaseController
 	{
 		$ua_cookie = $this->getCookie(md5('ua'));
 
-		if (!$ua_cookie || $ua_cookie != 'ua') {
+		if (empty($ua_cookie)) {
 			$ip = UtilService::getIp();
 
 			$ip = UtilService::ipToInt($ip);
@@ -49,7 +49,7 @@ class BaseController extends WebBaseController
 
 			$pv_uv->pv += 1;
 
-			if (!$ua_cookie || $ua_cookie != 'ua') {
+			if (empty($ua_cookie)) {
 				$pv_uv->uv += 1;
 			}
 
@@ -59,7 +59,7 @@ class BaseController extends WebBaseController
 		} else {
 			$pv_uv->pv += 1;
 
-			if (!$ua_cookie || $ua_cookie != 'ua') {
+			if (empty($ua_cookie)) {
 				$pv_uv->uv += 1;
 			}
 

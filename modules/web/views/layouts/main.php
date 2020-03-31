@@ -86,7 +86,7 @@ $tags_arr = BlogArticles::find()
                 </form>
             </div>
             <div class="b-tags">
-                <h4 class="b-title">热门标签</h4>
+                <h4 class="b-title">标签</h4>
                 <ul class="b-all-tname">
                     <?php foreach ($tags_arr as $key => $value): ?>
                         <li class="b-tname">
