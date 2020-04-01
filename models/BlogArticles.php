@@ -61,6 +61,7 @@ class BlogArticles extends \yii\db\ActiveRecord
             'category' => 'Category',
             'tag' => 'Tag',
             'author' => 'Author',
+            'title' => 'Title',
             'count' => 'Count',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
