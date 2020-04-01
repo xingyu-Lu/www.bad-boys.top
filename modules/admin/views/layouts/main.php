@@ -50,7 +50,7 @@ $user_info = BlogAdminUser::findOne($user_id);
         </div>
     </nav>
 
-    <div id="page-wrapper" style="background-color: #ffffff; height: 2000px;">
+    <div id="page-wrapper" style="background-color: #ffffff; height: 1600px;">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">

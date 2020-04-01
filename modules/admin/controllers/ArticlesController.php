@@ -14,7 +14,13 @@ class ArticlesController extends BaseController
 
     public function actionIndex()
     {
+        $title = $this->get('title');
+
         $query = BlogArticles::find();
+
+        if (!empty($title)) {
+            $query->where(['like', 'title', $title]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
