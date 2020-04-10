@@ -24,6 +24,9 @@ class StatController extends BaseController
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 15,
+            ],
         ]);
 
         return $this->render('index', [
