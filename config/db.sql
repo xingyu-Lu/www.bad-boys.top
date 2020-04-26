@@ -47,3 +47,6 @@ create table if not exists `blog_pv_uv` (
     `update_time` int(11) unsigned not null default '0',
     primary key (`id`)
 ) engine=innodb auto_increment=1;
+
+-- 2020-04-15 修改blog_articles表字段 --
+ALTER TABLE `blog_articles` modify `content` mediumtext NOT NULL COMMENT '文章内容';
