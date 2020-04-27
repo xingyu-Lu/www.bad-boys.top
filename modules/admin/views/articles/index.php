@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
+use app\models\BlogArticles;
 use yii\grid\GridView;
 use yii\web\View;
 
@@ -19,6 +20,22 @@ $current_controller = $this->context->id;
     </div>
 </div>
 
+<div>
+    <form class="form-inline" action="/admin/articles/index" method="get">
+        <div class="row p-w-m">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" placeholder="请输入文章标题" name="title" class="form-control"  value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
+            </div>
+        </div>
+        <hr/>
+    </form>
+</div>
+
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'emptyText' => '暂无文章',
@@ -27,7 +44,7 @@ $current_controller = $this->context->id;
         [
             'attribute' => 'content',
             'value' => function($data) {
-                return strip_tags($data->content);
+                return substr(strip_tags($data->content), 0, 300);
             },
             'contentOptions' => ['style'=>'width: 700px; word-wrap: break-word;'],
         ],
@@ -37,6 +54,16 @@ $current_controller = $this->context->id;
                 return $data->getStatusList()[$data->status];
             },
         ],
+        [
+            'attribute' => 'category',
+            'value' => function($data) {
+                return BlogArticles::getCategoryList()[$data->category];
+            },
+            'contentOptions' => ['style'=>'width: 700px; word-wrap: break-word;'],
+        ],
+        'tag',
+        'author',
+        'title',
         'count',
         'create_time:datetime',
         'update_time:datetime',

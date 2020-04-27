@@ -32,10 +32,23 @@ $tags_arr = BlogArticles::find()
 <?php $this->beginBody() ?>
 <header id="b-public-nav" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <div class="hidden-xs b-nav-background"></div>
+                <p class="b-logo-word">卢星宇博客</p>
+            </a>
+        </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav b-nav-parent">
+                <li class="hidden-xs b-nav-mobile"></li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'index') ? 'b-nav-active' : ''?> ">
-                    <a href="/web/article/index">首页</a>
+                    <a href="/">首页</a>
                 </li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'php') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/php">PHP</a>
@@ -45,6 +58,9 @@ $tags_arr = BlogArticles::find()
                 </li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'arithmetic') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/arithmetic">算法</a>
+                </li>
+                <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'mysql') ? 'b-nav-active' : ''?> ">
+                    <a href="/web/article/mysql">MySQL</a>
                 </li>
                 <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'others') ? 'b-nav-active' : ''?> ">
                     <a href="/web/article/others">其他</a>
@@ -70,7 +86,7 @@ $tags_arr = BlogArticles::find()
                 </form>
             </div>
             <div class="b-tags">
-                <h4 class="b-title">热门标签</h4>
+                <h4 class="b-title">标签</h4>
                 <ul class="b-all-tname">
                     <?php foreach ($tags_arr as $key => $value): ?>
                         <li class="b-tname">
