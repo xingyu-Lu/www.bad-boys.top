@@ -27,8 +27,6 @@ class WebBaseController extends Controller
 	{
 		$session = Yii::$app->session;
 
-		$session->remove('user_id');
-
 		$session->set('user_id', $user_id, 24*60*60);
 
 		return true;
