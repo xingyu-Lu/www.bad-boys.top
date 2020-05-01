@@ -66,14 +66,12 @@ class SiteController extends BaseController
             }
 
             $this->setLoginStatus($user_info->id);
-
-            // return $this->redirect('/admin/dashbord/index');
         }
 
         $session = $this->checkLoginStatus();
 
         if ($session) {
-            $this->redirect('/admin/dashbord/index');
+            return $this->redirect('/admin/dashbord/index');
         }
 
         return $this->render('login', [
