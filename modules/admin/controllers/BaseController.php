@@ -27,7 +27,7 @@ class BaseController extends WebBaseController
 			return $this->redirect('/admin/site/login');
 		}
 
-		// parent::beforeAction($action);
+		parent::beforeAction($action);
 
 		return true;
 	}
