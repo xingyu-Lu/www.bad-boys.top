@@ -10,18 +10,18 @@ use app\common\components\WebBaseController;
  */
 class BaseController extends WebBaseController
 {	
-	public $allowAllAction = [
-		'admin/site/login',
-		'admin/site/captcha'
-	];
+	// public $allowAllAction = [
+	// 	'admin/site/login',
+	// 	'admin/site/captcha'
+	// ];
 
 	public function beforeAction($action)
 	{
 		$res = $this->checkLoginStatus();
 
-		if (in_array($action->getUniqueId(), $this->allowAllAction)) {
-			return true;
-		}
+		// if (in_array($action->getUniqueId(), $this->allowAllAction)) {
+		// 	return true;
+		// }
 
 		if (empty($res)) {
 			return $this->redirect('/admin/site/login');
