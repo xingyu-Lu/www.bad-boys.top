@@ -41,7 +41,7 @@ class SiteController extends WebBaseController
     {
         $model = new BlogAdminUser();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
             $model->setScenario('login');
             if (!$model->validate()) {
                 return $this->render('login', [
