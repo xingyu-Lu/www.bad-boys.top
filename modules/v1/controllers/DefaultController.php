@@ -21,7 +21,7 @@ class DefaultController extends ActiveController
     public function behaviors()
 	{
 	   $behaviors = parent::behaviors();
-	   $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
+	   $behaviors['contentNegotiator']['formats']['application/xml'] = Response::FORMAT_JSON;
 	   return $behaviors;
 	}
 
