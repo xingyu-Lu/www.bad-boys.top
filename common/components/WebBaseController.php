@@ -29,7 +29,7 @@ class WebBaseController extends Controller
 
 		$session->remove('user_id');
 
-		$session->set('user_id', $user_id, 24*60*60);
+		$session->set('user_id', $user_id);
 
 		return true;
 	}
