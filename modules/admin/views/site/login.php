@@ -1,10 +1,10 @@
 <?php
 
-use app\assets\WebAsset;
+use app\assets\AdminAsset;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-WebAsset::register($this);
+AdminAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BlogAdminUser */
