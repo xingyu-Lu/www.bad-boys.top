@@ -6,6 +6,8 @@ $session_redis = require __DIR__ . '/session_redis.php';
 
 $config = [
     'id' => 'basic',
+    'name' => '博客后台',
+    'homeUrl' => '/admin/dashboard/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'zh-CN',

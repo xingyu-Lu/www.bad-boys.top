@@ -2,39 +2,29 @@
 /* @var $this yii\web\View */
 
 use app\models\BlogArticles;
+use yii\bootstrap\Collapse;
+use yii\bootstrap\Dropdown;
 use yii\grid\GridView;
 use yii\web\View;
 
 $this->title = '文章列表';
-$current_controller = $this->context->id;
+$current_action = $this->context->action->id;
 
 ?>
 
-<?php echo Yii::$app->view->renderFile("@app/modules/admin/views/common/tab_article.php",[ 'current' => $current_controller ]);?>
+<?php echo Yii::$app->view->renderFile("@app/modules/admin/views/common/tab_article.php",[ 'current' => $current_action ]);?>
 
-<div class="row" style="margin-bottom: 10px;">
-    <div class="col-lg-12">
-        <a class="btn btn-w-m btn-outline btn-primary pull-right" href="/admin/articles/create">
-            <i class="fa fa-plus"></i>写文章
-        </a>
-    </div>
-</div>
-
-<div>
-    <form class="form-inline" action="/admin/articles/index" method="get">
-        <div class="row p-w-m">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" placeholder="请输入文章标题" name="title" class="form-control"  value="">
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
-            </div>
+<form class="form-inline" action="/admin/articles/index" method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" placeholder="请输入文章标题" name="title" class="form-control"  value="">
         </div>
-        <hr/>
-    </form>
-</div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
+    </div>
+    <hr/>
+</form>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -59,11 +49,18 @@ $current_controller = $this->context->id;
             'value' => function($data) {
                 return BlogArticles::getCategoryList()[$data->category];
             },
-            'contentOptions' => ['style'=>'width: 700px; word-wrap: break-word;'],
+            'contentOptions' => ['style'=>'width: 70px; word-wrap: break-word;'],
         ],
         'tag',
         'author',
         'title',
+        [
+            'attribute' => 'title',
+            'value' => function($data) {
+                return $data->title;
+            },
+            'contentOptions' => ['style'=>'width: 200px; word-wrap: break-word;'],
+        ],
         'count',
         'create_time:datetime',
         'update_time:datetime',

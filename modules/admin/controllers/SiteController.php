@@ -73,7 +73,7 @@ class SiteController extends WebBaseController
         $user_id = $this->getSession();
 
         if ($user_id) {
-            return $this->redirect('/admin/dashbord/index');
+            return $this->redirect('/admin/dashboard/index');
         }
 
         // $session = $this->checkLoginStatus();
