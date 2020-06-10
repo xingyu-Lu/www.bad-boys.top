@@ -9,7 +9,7 @@ use Yii;
 /**
  * 仪表盘
  */
-class DashbordController extends BaseController
+class DashboardController extends BaseController
 {
 	public $layout = 'main';
 	
@@ -65,7 +65,7 @@ class DashbordController extends BaseController
 		]);
 	}
 
-	public function actionLoginout()
+	public function actionLogout()
 	{
 		$this->removeSession();
 

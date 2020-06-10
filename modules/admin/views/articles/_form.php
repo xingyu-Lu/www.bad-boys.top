@@ -19,7 +19,7 @@ $js = <<<JS
     //关闭elementPath
     // elementPathEnabled:false,
     //默认的编辑区域高度
-    initialFrameHeight:340,     
+    initialFrameHeight:600,     
 });
 JS;
 

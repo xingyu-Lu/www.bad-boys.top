@@ -36,30 +36,26 @@ $this->registerJs($js);
 
 <div style="margin-bottom: 10px;"></div>
 
-<div>
-    <form class="form-inline" action="/admin/stat/index" method="get">
-        <div class="row p-w-m">
-            <div class="form-group">
-                <div class="input-group">
-                    <input id="start_time" type="text" placeholder="请选择开始时间" name="start_time" readonly class="form-control"  value="<?= $start_time ?>">
-                </div>
-            </div>
-            <div class="form-group m-r m-l">
-                <label>至</label>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <input id="end_time" type="text" placeholder="请选择结束时间" name="end_time" readonly class="form-control" value="<?= $end_time ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
-            </div>
+<form class="form-inline" action="/admin/stat/index" method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input id="start_time" type="text" placeholder="请选择开始时间" name="start_time" readonly class="form-control"  value="<?= $start_time ?>">
         </div>
-        <hr/>
-    </form>
-</div>
-
+    </div>
+    <div class="form-group m-r m-l">
+        <label>至</label>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input id="end_time" type="text" placeholder="请选择结束时间" name="end_time" readonly class="form-control" value="<?= $end_time ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-w-m btn-outline btn-primary" value="查询">
+    </div>
+    <hr/>
+</form>
+    
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'emptyText' => '暂无数据',
