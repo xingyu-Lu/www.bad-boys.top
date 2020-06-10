@@ -5,6 +5,7 @@ use app\models\BlogArticles;
 use yii\bootstrap\Collapse;
 use yii\bootstrap\Dropdown;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\web\View;
 
 $this->title = '文章列表';
@@ -30,7 +31,13 @@ $current_action = $this->context->action->id;
     'dataProvider' => $dataProvider,
     'emptyText' => '暂无文章',
     'columns' => [
-        'id',
+        [
+            'attribute' => 'id',
+            'format' => 'raw',
+            'value' => function($data) {
+                return Html::a($data['id'], '/web/article/info?id=' . $data->id, ['target' => '_blank']);
+            }
+        ],
         [
             'attribute' => 'content',
             'value' => function($data) {
