@@ -8,6 +8,8 @@ $this->title = '更新文章';
 
 ?>
 
+<?php echo Yii::$app->view->renderFile("@app/modules/admin/views/common/tab_article.php",[ 'current' => '' ]);?>
+
 <h2><?= Html::encode($this->title) ?></h2>
 
 <?=

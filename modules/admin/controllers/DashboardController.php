@@ -59,6 +59,8 @@ class DashboardController extends BaseController
 				]);
 			}
 
+			$user_info->password = md5($user_info->password);
+
 			$user_info->save();
 
 			return $this->render('pwd_reset', [

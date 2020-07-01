@@ -322,6 +322,7 @@ class SystemController extends BaseController
         $access_list = BlogAccess::find()
             ->select('id, title')
             ->where(['status' => BlogAccess::NORMAL_STATUS])
+            ->andWhere(['parents_id' => 0])
             ->asArray()
             ->all();
 
