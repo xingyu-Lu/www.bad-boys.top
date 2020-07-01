@@ -23,31 +23,29 @@ class WebBaseController extends Controller
 		return Yii::$app->request->get($key, $default);
 	}
 
-	public function setSession($user_id)
+	public function setSession($key, $value)
 	{
 		$session = Yii::$app->session;
 
-		$session->remove('user_id');
-
-		$session->set('user_id', $user_id);
+		$session->set($key, $value, time()+3600*24);
 
 		return true;
 	}
 
-	public function getSession()
+	public function getSession($key)
 	{
 		$session = Yii::$app->session;
 
-		$user_id = $session->get('user_id');
+		$user_id = $session->get($key);
 
 		return $user_id;
 	}
 
-	public function removeSession()
+	public function removeSession($key)
 	{
 		$session = Yii::$app->session;
 
-		$session->remove('user_id');
+		$session->remove($key);
 
 		return true;
 	}

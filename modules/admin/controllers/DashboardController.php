@@ -15,12 +15,18 @@ class DashboardController extends BaseController
 	
 	public function actionIndex()
 	{
-		return $this->render('index');
+		$user_id = $this->getSession('user_id');
+
+		$user_info = BlogAdminUser::findOne($user_id);
+
+		return $this->render('index', [
+			'name' => $user_info['name'],
+		]);
 	}
 
 	public function actionEdit()
 	{
-		$user_id = $this->getSession();
+		$user_id = $this->getSession('user_id');
 
 		$user_info = BlogAdminUser::findOne($user_id);
 
@@ -67,7 +73,7 @@ class DashboardController extends BaseController
 
 	public function actionLogout()
 	{
-		$this->removeSession();
+		$this->Logout();
 
 		return $this->redirect('/admin/site/login');
 	}
