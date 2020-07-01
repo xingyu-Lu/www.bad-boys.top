@@ -41,6 +41,7 @@ $user_info = BlogAdminUser::findOne($user_id);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Dashboard', 'url' => ['/admin/dashboard/index']],
+            ['label' => '系统', 'url' => ['/admin/system/index']],
             ['label' => '文章', 'url' => ['/admin/articles/index']],
             ['label' => '统计', 'url' => ['/admin/stat/index']],
             ['label' => '个人中心', 'url' => ['/admin/dashboard/edit']],

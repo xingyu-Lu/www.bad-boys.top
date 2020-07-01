@@ -9,7 +9,7 @@ use app\models\BlogAdminUser;
 /**
  * Default controller for the `admin` module
  */
-class SiteController extends WebBaseController
+class SiteController extends BaseController
 {
     public $layout = false;
 
@@ -65,22 +65,20 @@ class SiteController extends WebBaseController
                 ]);
             }
 
-            $this->setSession($user_info->id);
-
-            // $this->setLoginStatus($user_info->id);
+            $this->setLoginStatus($user_info->id, $user_info->role_id, $user_info->is_admin);
         }
 
-        $user_id = $this->getSession();
+        // $user_id = $this->getSession();
 
-        if ($user_id) {
+        // if ($user_id) {
+        //     return $this->redirect('/admin/dashboard/index');
+        // }
+
+        $session = $this->checkLoginStatus();
+
+        if ($session) {
             return $this->redirect('/admin/dashboard/index');
         }
-
-        // $session = $this->checkLoginStatus();
-
-        // if ($session) {
-        //     return $this->redirect('/admin/dashbord/index');
-        // }
 
         return $this->render('login', [
             'model' => $model
