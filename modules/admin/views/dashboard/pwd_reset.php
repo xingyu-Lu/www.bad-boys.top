@@ -1,9 +1,13 @@
 <?php 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+$this->title = '修改密码';
+$current_action = $this->context->action->id;
+
 ?>
 
-<?= Yii::$app->view->renderFile("@app/modules/admin/views/common/tab_user.php",['current' => 'pwd']); ?>
+<?= Yii::$app->view->renderFile("@app/modules/admin/views/common/tab_user.php",['current' => $current_action]); ?>
 
 <?php $form = ActiveForm::begin(); ?>
 

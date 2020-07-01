@@ -5,7 +5,7 @@ $tab_list = [
 		'title' => '信息编辑',
 		'url' => '/admin/dashboard/edit'
 	],
-	'pwd' => [
+	'pwd-reset' => [
 		'title' => '修改密码',
 		'url' => "/admin/dashboard/pwd-reset"
 	]
