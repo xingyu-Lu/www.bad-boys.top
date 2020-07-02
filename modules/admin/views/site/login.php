@@ -9,6 +9,9 @@ AdminAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model app\models\BlogAdminUser */
 /* @var $form ActiveForm */
+
+$this->title = '登录';
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
