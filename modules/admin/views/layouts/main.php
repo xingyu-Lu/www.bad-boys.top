@@ -45,6 +45,7 @@ $user_info = BlogAdminUser::findOne($user_id);
             ['label' => '文章', 'url' => ['/admin/articles/index']],
             ['label' => '统计', 'url' => ['/admin/stat/index']],
             ['label' => '个人中心', 'url' => ['/admin/dashboard/edit']],
+            ['label' => '客服中心', 'url' => ['/admin/cs/index']],
             ['label' => 'Logout', 'url' => ['/admin/dashboard/logout']]
         ],
     ]);

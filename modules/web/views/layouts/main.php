@@ -66,6 +66,9 @@ $tags_arr = BlogArticles::find()
                     <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'others') ? 'b-nav-active' : ''?> ">
                         <a href="/web/article/others">其他</a>
                     </li>
+                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'cs' && Yii::$app->controller->action->id == 'index') ? 'b-nav-active' : ''?> ">
+                        <a href="/web/cs/index" target="_blank">联系客服</a>
+                    </li>
             </div>
         </div>
     </header>
