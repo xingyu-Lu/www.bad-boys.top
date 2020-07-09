@@ -3,7 +3,7 @@
 $token = md5('admin') . "@" . $user_id;
 
 $js = <<<JS
-	var wsServer = 'ws://192.168.198.101:9501?token=$token';
+	var wsServer = 'wss://www.bad-boys.top/websocket?token=$token';
 	var websocket = new WebSocket(wsServer);
 
 	//发送消息到服务器
