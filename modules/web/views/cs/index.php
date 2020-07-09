@@ -1,7 +1,7 @@
 <?php 
 
 $js = <<<JS
-	var wsServer = 'ws://192.168.198.101:9501';
+	var wsServer = 'wss://www.bad-boys.top/websocket';
 	var websocket = new WebSocket(wsServer);
 
 	//发送消息到服务器
