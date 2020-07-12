@@ -231,20 +231,18 @@ EOF;
         $this->assertEquals('{ foo: null, bar: 1 }', $dump, '->dump() does not dump objects when disabled');
     }
 
-    /**
-     * @expectedException \Symfony\Component\Yaml\Exception\DumpException
-     */
     public function testObjectSupportDisabledWithExceptions()
     {
+        $this->expectException('Symfony\Component\Yaml\Exception\DumpException');
         $this->dumper->dump(['foo' => new A(), 'bar' => 1], 0, 0, Yaml::DUMP_EXCEPTION_ON_INVALID_TYPE);
     }
 
     /**
      * @group legacy
-     * @expectedException \Symfony\Component\Yaml\Exception\DumpException
      */
     public function testObjectSupportDisabledWithExceptionsPassingTrue()
     {
+        $this->expectException('Symfony\Component\Yaml\Exception\DumpException');
         $this->dumper->dump(['foo' => new A(), 'bar' => 1], 0, 0, true);
     }
 
@@ -291,6 +289,7 @@ EOF;
             'double-quote' => ['"', "'\"'"],
             'slash' => ['/', '/'],
             'backslash' => ['\\', '\\'],
+            'del' => ["\x7f", '"\x7f"'],
             'next-line' => ["\xC2\x85", '"\\N"'],
             'non-breaking-space' => ["\xc2\xa0", '"\\_"'],
             'line-separator' => ["\xE2\x80\xA8", '"\\L"'],
@@ -527,6 +526,67 @@ YAML;
         $this->assertSame($expected, $yaml);
     }
 
+    public function testDumpingNotInlinedScalarTaggedValue()
+    {
+        $data = [
+            'user1' => new TaggedValue('user', 'jane'),
+            'user2' => new TaggedValue('user', 'john'),
+        ];
+        $expected = <<<YAML
+user1: !user jane
+user2: !user john
+
+YAML;
+
+        $this->assertSame($expected, $this->dumper->dump($data, 2));
+    }
+
+    public function testDumpingNotInlinedNullTaggedValue()
+    {
+        $data = [
+            'foo' => new TaggedValue('bar', null),
+        ];
+        $expected = <<<YAML
+foo: !bar null
+
+YAML;
+
+        $this->assertSame($expected, $this->dumper->dump($data, 2));
+    }
+
+    public function testDumpingMultiLineStringAsScalarBlockTaggedValue()
+    {
+        $data = [
+            'foo' => new TaggedValue('bar', "foo\nline with trailing spaces:\n  \nbar\ninteger like line:\n123456789\nempty line:\n\nbaz"),
+        ];
+        $expected = <<<YAML
+foo: !bar |
+    foo
+    line with trailing spaces:
+      
+    bar
+    integer like line:
+    123456789
+    empty line:
+    
+    baz
+
+YAML;
+
+        $this->assertSame($expected, $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+    }
+
+    public function testDumpingInlinedMultiLineIfRnBreakLineInTaggedValue()
+    {
+        $data = [
+            'data' => [
+                'foo' => new TaggedValue('bar', "foo\r\nline with trailing spaces:\n  \nbar\ninteger like line:\n123456789\nempty line:\n\nbaz"),
+            ],
+        ];
+
+        $this->assertSame(file_get_contents(__DIR__.'/Fixtures/multiple_lines_as_literal_block_for_tagged_values.yml'), $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+    }
+
     public function testDumpMultiLineStringAsScalarBlock()
     {
         $data = [
@@ -554,26 +614,37 @@ YAML;
         $this->assertSame(file_get_contents(__DIR__.'/Fixtures/multiple_lines_as_literal_block_leading_space_in_first_line.yml'), $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
     }
 
-    public function testCarriageReturnIsMaintainedWhenDumpingAsMultiLineLiteralBlock()
+    public function testCarriageReturnFollowedByNewlineIsMaintainedWhenDumpingAsMultiLineLiteralBlock()
     {
         $this->assertSame("- \"a\\r\\nb\\nc\"\n", $this->dumper->dump(["a\r\nb\nc"], 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The indentation must be greater than zero
-     */
+    public function testCarriageReturnNotFollowedByNewlineIsPreservedWhenDumpingAsMultiLineLiteralBlock()
+    {
+        $expected = <<<'YAML'
+parent:
+    foo: "bar\n\rbaz: qux"
+
+YAML;
+
+        $this->assertSame($expected, $this->dumper->dump([
+            'parent' => [
+                'foo' => "bar\n\rbaz: qux",
+            ],
+        ], 4, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+    }
+
     public function testZeroIndentationThrowsException()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('The indentation must be greater than zero');
         new Dumper(0);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The indentation must be greater than zero
-     */
     public function testNegativeIndentationThrowsException()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('The indentation must be greater than zero');
         new Dumper(-4);
     }
 }

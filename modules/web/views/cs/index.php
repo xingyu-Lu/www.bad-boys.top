@@ -1,7 +1,10 @@
 <?php 
 
+$token = md5('user') . "@" . time();
+
 $js = <<<JS
-	var wsServer = 'wss://www.bad-boys.top/websocket';
+	var wsServer = "wss://www.bad-boys.top/websocket?token=$token";
+	// var wsServer = "ws://192.168.198.101:9501?token=$token";
 	var websocket = new WebSocket(wsServer);
 
 	//发送消息到服务器
