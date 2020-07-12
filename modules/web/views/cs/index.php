@@ -11,7 +11,8 @@ $js = <<<JS
     function sendMsg(action, msg) {
     	websocket.send(JSON.stringify({
 	        action: action,
-	        msg: msg
+	        msg: msg,
+	        token: "$token"
 	    }));
     };
 
