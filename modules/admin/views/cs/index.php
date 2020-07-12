@@ -3,7 +3,8 @@
 $token = md5('admin') . "@" . $user_id;
 
 $js = <<<JS
-	var wsServer = 'wss://www.bad-boys.top/websocket?token=$token';
+	var wsServer = "wss://www.bad-boys.top/websocket?token=$token";
+	// var wsServer = "ws://192.168.198.101:9501?token=$token";
 	var websocket = new WebSocket(wsServer);
 
 	//发送消息到服务器
@@ -76,6 +77,12 @@ $js = <<<JS
 	websocket.onerror = function (evt, e) {
 	    receive_system_message('系统提示：连接错误');
 	};
+
+	websocket.onopen = function (evt) {
+		setInterval(function () {
+			sendMsg('adminHeart', '心跳');
+		}, 1200000);
+	}
 JS;
 
 $this->registerJs($js);
