@@ -81,7 +81,7 @@ $js = <<<JS
 	websocket.onopen = function (evt) {
 		setInterval(function () {
 			sendMsg('adminHeart', '心跳');
-		}, 1200000);
+		}, 300000);
 	}
 JS;
 
