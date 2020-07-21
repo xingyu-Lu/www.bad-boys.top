@@ -68,6 +68,10 @@ $js = <<<JS
     	if (res.type == 2) {
     		sends_message('绿巨人', 1, res.msg);
     	}
+
+    	if (res.type == 3) {
+			$('#user_count').text(res.msg);
+    	}
 	};
 
 	websocket.onclose = function (evt) {
@@ -96,6 +100,11 @@ $this->registerJs($js);
 					<span class="glyphicon glyphicon-remove"></span> 结束用户对话
 				</label>
 			</div>
+			<ul class="topnavlist">
+				<li class="userlist">
+					<span id="user_count">待服务用户:0人</span> 
+				</li>
+			</ul>
 		</div>
 		<div class="main container">
 			<div class="col-md-12">
