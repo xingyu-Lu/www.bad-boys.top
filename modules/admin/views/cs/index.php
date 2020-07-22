@@ -83,9 +83,16 @@ $js = <<<JS
 	};
 
 	websocket.onopen = function (evt) {
+		var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 		setInterval(function () {
-			sendMsg('adminHeart', '心跳');
+			sendMsg('adminHeart', rString);
 		}, 300000);
+	}
+
+	function randomString(length, chars) {
+	    var result = '';
+	    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+	    return result;
 	}
 JS;
 
