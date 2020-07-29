@@ -27,7 +27,7 @@ class WebBaseController extends Controller
 	{
 		$session = Yii::$app->session;
 
-		$session->set($key, $value, time()+3600*24);
+		$session->set($key, $value);
 
 		return true;
 	}
