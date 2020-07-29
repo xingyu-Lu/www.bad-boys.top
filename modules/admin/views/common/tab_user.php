@@ -3,11 +3,11 @@
 $tab_list = [
 	'edit' => [
 		'title' => '信息编辑',
-		'url' => '/admin/dashbord/edit'
+		'url' => '/admin/dashboard/edit'
 	],
-	'pwd' => [
+	'pwd-reset' => [
 		'title' => '修改密码',
-		'url' => "/admin/dashbord/pwd-reset"
+		'url' => "/admin/dashboard/pwd-reset"
 	]
 ];
 ?>

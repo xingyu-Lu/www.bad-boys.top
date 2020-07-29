@@ -1,13 +1,17 @@
 <?php
 $tab_list = [
-    'articles' => [
+    'index' => [
         'title' => '文章列表',
         'url' => '/admin/articles/index'
+    ],
+    'create' => [
+        'title' => '写文章',
+        'url' => '/admin/articles/create'
     ],
 ];
 ?>
 
-<div class="row  border-bottom" style="margin-bottom: 10px">
+<div class="row border-bottom" style="margin-bottom: 10px">
     <div class="col-lg-12">
         <div class="tab_title">
             <ul class="nav nav-pills">

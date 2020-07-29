@@ -19,27 +19,27 @@ $js = <<<JS
     //关闭elementPath
     // elementPathEnabled:false,
     //默认的编辑区域高度
-    initialFrameHeight:340,     
+    initialFrameHeight:600,     
 });
 JS;
 
 $this->registerJs($js);
 
 ?>
-    <div class="col-md-8">
-        <?php $form = ActiveForm::begin(); ?>
+<div class="col-md-8">
+    <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'title'); ?>
+        <?= $form->field($model, 'title'); ?>
 
-            <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id' => 'myEditor']); ?>
+        <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id' => 'myEditor']); ?>
 
-            <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
+        <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
 
-            <?= $form->field($model, 'category')->dropDownList($model->getCategoryList()); ?>
+        <?= $form->field($model, 'category')->dropDownList($model->getCategoryList()); ?>
 
-            <?= $form->field($model, 'tag'); ?>
+        <?= $form->field($model, 'tag'); ?>
 
-            <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 
-        <?php ActiveForm::end(); ?>
-    </div>
+    <?php ActiveForm::end(); ?>
+</div>

@@ -39,7 +39,7 @@ class ArticlesController extends BaseController
         $model = new BlogArticles();
 
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user_info = BlogAdminUser::findOne($this->getSession());
+            $user_info = BlogAdminUser::findOne($this->getSession('user_id'));
             $model->author = $user_info->name;
             $model->create_time = time();
             $model->update_time = time();

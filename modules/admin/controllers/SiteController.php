@@ -3,8 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
+use app\common\components\WebBaseController;
 use app\models\BlogAdminUser;
-use app\modules\admin\controllers\BaseController;
 
 /**
  * Default controller for the `admin` module
@@ -41,7 +41,7 @@ class SiteController extends BaseController
     {
         $model = new BlogAdminUser();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
             $model->setScenario('login');
             if (!$model->validate()) {
                 return $this->render('login', [
@@ -65,15 +65,19 @@ class SiteController extends BaseController
                 ]);
             }
 
-            $this->setLoginStatus($user_info->id);
-
-            return $this->redirect('/admin/dashbord/index');
+            $this->setLoginStatus($user_info->id, $user_info->role_id, $user_info->is_admin);
         }
+
+        // $user_id = $this->getSession();
+
+        // if ($user_id) {
+        //     return $this->redirect('/admin/dashboard/index');
+        // }
 
         $session = $this->checkLoginStatus();
 
         if ($session) {
-            $this->redirect('/admin/dashbord/index');
+            return $this->redirect('/admin/dashboard/index');
         }
 
         return $this->render('login', [
