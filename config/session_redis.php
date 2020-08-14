@@ -6,8 +6,8 @@ if (YII_ENV_DEV) {
         'timeout' => 24*3600,
         'cookieParams' => ['lifetime' => 24*3600, 'httponly' => true],
         'redis' => [
-            'hostname' => 'localhost',
-            'port' => 6380,
+            'hostname' => 'redis',
+            'port' => 6379,
             'database' => 0,
         ]
     ];
