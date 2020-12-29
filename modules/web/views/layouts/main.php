@@ -2,6 +2,8 @@
 
 use app\assets\WebAsset;
 use app\models\BlogArticles;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 
 WebAsset::register($this);
@@ -31,47 +33,28 @@ $tags_arr = BlogArticles::find()
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
-    <header id="b-public-nav" class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <div class="hidden-xs b-nav-background"></div>
-                    <p class="b-logo-word">卢星宇博客</p>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav b-nav-parent">
-                    <li class="hidden-xs b-nav-mobile"></li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'index') ? 'b-nav-active' : ''?> ">
-                        <a href="/">首页</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'php') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/article/php">PHP</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'linux') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/article/linux">Linux</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'arithmetic') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/article/arithmetic">算法</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'mysql') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/article/mysql">MySQL</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'article' && Yii::$app->controller->action->id == 'others') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/article/others">其他</a>
-                    </li>
-                    <li class="b-nav-cname <?= (Yii::$app->controller->id == 'cs' && Yii::$app->controller->action->id == 'index') ? 'b-nav-active' : ''?> ">
-                        <a href="/web/cs/index" target="_blank">联系客服</a>
-                    </li>
-            </div>
-        </div>
-    </header>
+    <?php
+        NavBar::begin([
+            'brandLabel' => '卢星宇博客',
+            'brandUrl' => '/',
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => '首页', 'url' => ['/']],
+                ['label' => 'PHP', 'url' => ['/web/article/php']],
+                ['label' => 'Linux', 'url' => ['/web/article/linux']],
+                ['label' => '算法', 'url' => ['/web/article/arithmetic']],
+                ['label' => 'MySQL', 'url' => ['/web/article/mysql']],
+                ['label' => '其他', 'url' => ['/web/article/others']],
+                ['label' => '联系客服', 'url' => ['/web/cs/index'], 'linkOptions' => ['target' => '_blank']]
+            ],
+        ]);
+        NavBar::end();
+    ?>
 
     <div class="b-h-70"></div>
 

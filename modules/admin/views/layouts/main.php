@@ -30,26 +30,26 @@ $user_info = BlogAdminUser::findOne($user_id);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Dashboard', 'url' => ['/admin/dashboard/index']],
-            ['label' => '系统', 'url' => ['/admin/system/index']],
-            ['label' => '文章', 'url' => ['/admin/articles/index']],
-            ['label' => '统计', 'url' => ['/admin/stat/index']],
-            ['label' => '个人中心', 'url' => ['/admin/dashboard/edit']],
-            ['label' => '客服中心', 'url' => ['/admin/cs/index']],
-            ['label' => 'Logout', 'url' => ['/admin/dashboard/logout']]
-        ],
-    ]);
-    NavBar::end();
+        NavBar::begin([
+            'brandLabel' => Yii::$app->name,
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => 'Dashboard', 'url' => ['/admin/dashboard/index']],
+                ['label' => '系统', 'url' => ['/admin/system/index']],
+                ['label' => '文章', 'url' => ['/admin/articles/index']],
+                ['label' => '统计', 'url' => ['/admin/stat/index']],
+                ['label' => '个人中心', 'url' => ['/admin/dashboard/edit']],
+                ['label' => '客服中心', 'url' => ['/admin/cs/index']],
+                ['label' => 'Logout', 'url' => ['/admin/dashboard/logout']]
+            ],
+        ]);
+        NavBar::end();
     ?>
 
     <div class="container-fluid" style="padding-top: 60px;">
