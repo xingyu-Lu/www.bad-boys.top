@@ -45,7 +45,7 @@ class BlogArticles extends \yii\db\ActiveRecord
             [['status', 'create_time', 'update_time', 'count'], 'integer'],
             [['content', 'title'], 'string'],
             [['category', 'tag', 'author'], 'string', 'max' => 20],
-            [['title'], 'string', 'max' => 30],
+            [['title'], 'string', 'max' => 100],
         ];
     }
 
