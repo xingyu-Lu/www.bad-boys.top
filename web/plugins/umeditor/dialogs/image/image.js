@@ -34,9 +34,18 @@
 //                        parseInt($(editor.body).css("padding-right")));
 //                }
 
+                // return arr.push({
+                //     _src: node.src,
+                //     src: node.src
+                // });
+                
+                //qcw 去除域名
+                var imgsrc = node.src.replace(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port, '');
+                imgsrc = imgsrc.replace(window.location.protocol + '//' + window.location.hostname, '');
+
                 return arr.push({
-                    _src: node.src,
-                    src: node.src
+                    _src: imgsrc,
+                    src: imgsrc
                 });
             });
 
