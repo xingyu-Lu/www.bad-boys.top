@@ -6,6 +6,8 @@ $session_redis = require __DIR__ . '/session_redis.php';
 
 $config = [
     'id' => 'basic',
+    'name' => '博客后台',
+    'homeUrl' => '/admin/dashboard/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
@@ -61,6 +63,16 @@ $config = [
             'sizeFormatBase' => 1000,
         ],
         'session' => $session_redis,
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // 一定不要发布该资源
+                    'js' => [
+                        'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js',
+                    ]
+                ],
+            ]
+        ],
     ],
     'modules' => [
         'admin' => [

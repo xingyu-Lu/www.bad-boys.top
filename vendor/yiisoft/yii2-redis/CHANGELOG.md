@@ -1,6 +1,19 @@
 Yii Framework 2 redis extension Change Log
 ==========================================
 
+2.0.14 November 10, 2020
+------------------------
+
+- Bug #215: Fix `Connection::isActive()` returns `false` when the connection is active (cornernote)
+- Enh #212: Added support for the 'session.use_strict_mode' ini directive in `yii\web\Session` (rhertogh)
+
+
+2.0.13 May 02, 2020
+-------------------
+
+- Enh #210: Add Redis 5.0 stream commands. Read more at [streams intro](https://redis.io/topics/streams-intro) (sartor)
+
+
 2.0.12 March 13, 2020
 ---------------------
 

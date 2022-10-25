@@ -5,7 +5,11 @@
 use yii\helpers\Html;
 
 $this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'] = [$this->title, [
+             'label' => 'Post Category',
+              'url' => ['post-category/view', 'id' => 10],
+            'template' => "<li><b>{link}</b></li>\n", // template for this link only
+          ],];
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>

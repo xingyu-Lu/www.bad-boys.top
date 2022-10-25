@@ -8,8 +8,11 @@ class UtilService
     public static function getIp()
     {
         if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
+            Yii::warning('HTTP_X_FORWARDED_FOR: ' . $_SERVER["HTTP_X_FORWARDED_FOR"] . 'AND REMOTE_ADDR: ' . $_SERVER["REMOTE_ADDR"]);
             return $_SERVER["HTTP_X_FORWARDED_FOR"];
         }
+
+        Yii::warning('REMOTE_ADDR: ' . $_SERVER["REMOTE_ADDR"]);
 
         return isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '';
     }

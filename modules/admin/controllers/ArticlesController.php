@@ -25,7 +25,7 @@ class ArticlesController extends BaseController
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 20,
             ],
         ]);
 
@@ -39,12 +39,11 @@ class ArticlesController extends BaseController
         $model = new BlogArticles();
 
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user_info = BlogAdminUser::findOne($this->getSession());
+            $user_info = BlogAdminUser::findOne($this->getSession('user_id'));
             $model->author = $user_info->name;
             $model->create_time = time();
             $model->update_time = time();
             $model->save();
-            return $this->redirect('/admin/articles/index');
         }
 
         return $this->render('create', [
@@ -59,7 +58,6 @@ class ArticlesController extends BaseController
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->update_time = time();
             $model->save();
-            return $this->redirect('/admin/articles/index');
         }
 
         return $this->render('update', [

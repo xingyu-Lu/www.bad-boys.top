@@ -18,6 +18,7 @@ class WebAsset extends AssetBundle
     ];
 
     public $js = [
+        "js/web/web.js",
     ];
 
     public $depends = [

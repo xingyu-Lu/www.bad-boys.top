@@ -33,9 +33,13 @@ div, table {
 textarea {
     resize:none
 }
+html {
+    height: 100%;
+}
 body {
     background:#f8f8f8;
-    font-family:Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif
+    font-family:Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    height: 100%;
 }
 a {
     transition:ALL .5s ease;
@@ -1216,4 +1220,10 @@ a {
     height:3px;
     background:#0b94c1;
     pointer-events:none
+}
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -75px;
+    padding: 0 0 60px;
 }
