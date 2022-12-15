@@ -55,7 +55,7 @@ class ArticlesController extends BaseController
     {
         $model = BlogArticles::findOne($id);
 
-        if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model && Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->update_time = time();
             $model->save();
         }
