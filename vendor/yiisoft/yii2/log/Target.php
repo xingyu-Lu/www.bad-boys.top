@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\log;
@@ -11,7 +11,6 @@ use Yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use yii\helpers\StringHelper;
 use yii\helpers\VarDumper;
 use yii\web\Request;
 
@@ -27,10 +26,10 @@ use yii\web\Request;
  * may specify [[except]] to exclude messages of certain categories.
  *
  * @property bool $enabled Indicates whether this log target is enabled. Defaults to true. Note that the type
- * of this property differs in getter and setter. See [[getEnabled()]]  and [[setEnabled()]] for details.
+ * of this property differs in getter and setter. See [[getEnabled()]] and [[setEnabled()]] for details.
  * @property int $levels The message levels that this target is interested in. This is a bitmap of level
  * values. Defaults to 0, meaning all available levels. Note that the type of this property differs in getter and
- * setter. See [[getLevels()]]  and [[setLevels()]] for details.
+ * setter. See [[getLevels()]] and [[setLevels()]] for details.
  *
  * For more details and usage information on Target, see the [guide article on logging & targets](guide:runtime-logging).
  *
@@ -100,7 +99,7 @@ abstract class Target extends Component
         '_SERVER.PHP_AUTH_PW',
     ];
     /**
-     * @var callable a PHP callable that returns a string to be prefixed to every exported message.
+     * @var callable|null a PHP callable that returns a string to be prefixed to every exported message.
      *
      * If not set, [[getMessagePrefix()]] will be used, which prefixes the message with context information
      * such as user IP, user ID and session ID.
@@ -297,7 +296,7 @@ abstract class Target extends Component
         $level = Logger::getLevelName($level);
         if (!is_string($text)) {
             // exceptions may not be serializable if in the call stack somewhere is a Closure
-            if ($text instanceof \Throwable || $text instanceof \Exception) {
+            if ($text instanceof \Exception || $text instanceof \Throwable) {
                 $text = (string) $text;
             } else {
                 $text = VarDumper::export($text);
