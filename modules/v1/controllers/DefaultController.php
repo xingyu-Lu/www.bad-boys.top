@@ -2,6 +2,7 @@
 
 namespace app\modules\v1\controllers;
 
+use app\models\BlogArticles;
 use app\models\BlogAdminUser;
 use yii\rest\ActiveController;
 use yii\rest\Controller;
@@ -12,7 +13,7 @@ use yii\web\Response;
  */
 class DefaultController extends ActiveController
 {
-    public $modelClass = 'app\models\BlogAdminUser';
+    public $modelClass = 'app\models\BlogArticles';
     public $serializer = [
         'class' => 'yii\rest\Serializer',
         'collectionEnvelope' => 'items',
@@ -31,8 +32,9 @@ class DefaultController extends ActiveController
      */
     public function actionIndex()
     {
-       // $res = BlogAdminUser::findOne(2);
+       // $res = BlogArticle::find()->toArray()->all();
        // $res = [['aa','bb']];
        // return $res;
+       // BlogArticle::
     }
 }
