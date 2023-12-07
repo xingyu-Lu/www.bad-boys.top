@@ -71,7 +71,7 @@ $current_action = $this->context->action->id;
         'count',
         'create_time:datetime',
         'update_time:datetime',
-        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
+        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {delete}'],
     ]
 ]);
 

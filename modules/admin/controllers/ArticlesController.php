@@ -16,7 +16,7 @@ class ArticlesController extends BaseController
     {
         $title = $this->get('title');
 
-        $query = BlogArticles::find();
+        $query = BlogArticles::find()->orderBy('id desc');
 
         if (!empty($title)) {
             $query->where(['like', 'title', $title]);
@@ -72,6 +72,13 @@ class ArticlesController extends BaseController
         return $this->render('view', [
             'model' => $model
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        BlogArticles::findOne($id)->delete();
+
+        return $this->redirect('index');
     }
 
 }
