@@ -64,14 +64,14 @@ $config = [
         ],
         'session' => $session_redis,
         'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,   // 一定不要发布该资源
-                    'js' => [
-                        'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js',
-                    ]
-                ],
-            ]
+            // 'bundles' => [
+            //     'yii\web\JqueryAsset' => [
+            //         'sourcePath' => null,   // 一定不要发布该资源
+            //         'js' => [
+            //             'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js',
+            //         ]
+            //     ],
+            // ]
         ],
     ],
     'modules' => [
